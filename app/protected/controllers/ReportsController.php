@@ -11,7 +11,7 @@ class ReportsController extends Controller
                 $this->redirect(Yii::app()->createUrl('account'));
             }
         }
-        public function actionIndex()
+        public function actionAll()
 	{
             $cId = Yii::app()->user->cid;
             $sdate = null; 
@@ -35,68 +35,55 @@ class ReportsController extends Controller
             if(isset($_POST['assignedto']) && $_POST['assignedto']!='null') {                
                 $assignedTo = implode(',', json_decode(str_replace('"', '', $_POST['assignedto'])));                
             }
-            $sql = "SELECT t.id, c.id as cid, c.name as campaign, l.name as site, mt.name as mediatype, t.dueDate as duedate, "
-                    . " CONCAT(l.locality, ', ', a.name) as location, "
-                    . " t.taskDone as status, t.problem, u.id as uid, CONCAT(u.fname,' ', u.lname) as assignedto, t.pop "
-                    . " FROM Task t "
-                    . " LEFT JOIN Campaign c ON c.id=t.campaignid "
-                    . " LEFT JOIN Listing l ON l.id=t.siteid "
-                    . " LEFT JOIN MediaType mt ON mt.id=l.mediaTypeId "
-                    . " LEFT JOIN User u ON u.id=t.assigneduserid "
-                    . " LEFT JOIN Area a ON a.id=l.cityid "
-                    . " WHERE t.status = 1 and t.pop=1 AND t.assignedCompanyid=$cId "
-                    . " AND l.status=1 ";
-            if(!is_null($sdate) && !is_null($edate)) {
-                $sql .= " AND DATE(t.dueDate) BETWEEN '$sdate' AND '$edate' ";
-            } else {
-                $sql .= " AND DATE(t.dueDate) <= CURRENT_DATE() ";
-            }
-            if(!is_null($campaignIds) && strlen($campaignIds)) {
-                $sql .= " AND c.id IN ($campaignIds) ";
-            }
-            if(!is_null($assignedTo) && strlen($assignedTo)) {
-                $sql .= " AND t.assigneduserid IN ($assignedTo) ";
-            }
-            $sql .= "ORDER BY t.dueDate DESC ";
+            $sql = 'select t.clientName as name,t.clientMobNumber, t.id,t.status,
+            c.name as sitename,vv.name as vehiclemake,
+            t.companyRefNumber,
+        DATE_FORMAT(t.dueDate,\'%d %M %Y\') as dueDate,  
+        u.id as assigneduserid, u.username as assignedusername from Task t 
+        inner join city c on c.id = t.inspectionLocationId
+        left outer join  VehicleMakeMaster vv on vv.id =  t.vehicleMakeId
+        left outer join User u on u.id = t.assigneduserid
+                             where DATE_FORMAT(dueDate, \'%Y-%m-%d\') >= CURRENT_DATE ' ;
+        if ($campaignIds) {
+            $sql = $sql . ' and  assignedCompanyId in (' . $campaignIds . ')';
+        }
+        if ($assignedTo) {
+            $sql = $sql . ' and  assigneduserid in (' . $assignedTo . ')';
+        }
+        if ($sdate) {
+            $sql = $sql . ' and DATE_FORMAT(dueDate, \'%Y-%m-%d\') >= \'' . $sdate . '\'';
+        }
+        if ($edate) {
+            $sql = $sql . ' and DATE_FORMAT(dueDate, \'%Y-%m-%d\') <= \'' . $edate . '\'';
+        }
+        
+        $sql = $sql . ' order by t.dueDate ASC';
             
             $tasks = Yii::app()->db->createCommand($sql)->queryAll();
             $campaignIdList = array();
             $assignedToList = array();
-            $sql2 = "SELECT c.id as cid, c.name as campaign, u.id as uid, CONCAT(u.fname,' ', u.lname) as assignedto "
-                    . "FROM Task t "
-                    . "LEFT JOIN Campaign c ON c.id=t.campaignid "                    
-                    . "LEFT JOIN User u ON u.id=t.assigneduserid "
-                    . "WHERE t.status = 1 and  t.assignedCompanyid=$cId "
-                    . "AND DATE(t.dueDate) <= CURRENT_DATE() and u.username is not null and u.username != '' ";
-            $filters = Yii::app()->db->createCommand($sql2)->queryAll();
-            foreach($filters as $fl) {
-                //echo '<pre>';
+//            $sql2 = "SELECT c.id as cid, c.name as campaign, u.id as uid, CONCAT(u.fname,' ', u.lname) as assignedto "
+//                    . "FROM Task t "
+//                    . "LEFT JOIN Campaign c ON c.id=t.campaignid "                    
+//                    . "LEFT JOIN User u ON u.id=t.assigneduserid "
+//                    . "WHERE t.status = 1 and  t.assignedCompanyid=$cId "
+//                    . "AND DATE(t.dueDate) <= CURRENT_DATE() and u.username is not null and u.username != '' ";
+//            $filters = Yii::app()->db->createCommand($sql2)->queryAll();
+                    $company = UserCompany::model()->findAll();
+                    foreach ($company as $value) {
+                        $campaignIdList[$value['id']] = $value['name'];
+                    }
+
+                    $user = User::model()->findAll();
+                    foreach ($user as $value) {
+                        $assignedToList[$value['id']] = $value['username'];
+                    }
                 
-                if(!isset($campaignIdList[$fl['cid']])) {
-                    $campaignIdList[$fl['cid']] = $fl['campaign'];
-                    //shared campaigns to  be included
-                }
-                if(!isset($assignedToList[$fl['uid']])) {
-                    $assignedToList[$fl['uid']] = $fl['assignedto'];
-                }                
-            }
-                        $campaignsSharedWithMe = MonitorlyCampaignShare::model()->findAllByAttributes(array('email' => Yii::app()->user->email));
-            $sharedcampaigns = array();
-            if (!empty($campaignsSharedWithMe)) {
-                $sharedCampId = array();
-                foreach ($campaignsSharedWithMe as $key => $shared) {
- //                   print_r($shared);
-                    array_push($sharedCampId, $shared['campaignid']);
-                }
-                $sharedcampaigns = Campaign::fetchCampaignsOnIds(implode(',', $sharedCampId));
-            }
-            foreach ($sharedcampaigns as $camp) {
-                $campaignIdList[$camp['id']] = $camp['name'];
-            }
-            $this->render('index', array('tasks'=>$tasks, 'campaignIdList'=>$campaignIdList, 'assignedToList'=> $assignedToList));
+         
+            $this->render('all', array('tasks'=>$tasks, 'campaignIdList'=>$campaignIdList, 'assignedToList'=> $assignedToList));
 	}
         
-        public function actionAll()
+        public function actionAll1()
 	{
             
             $cId = Yii::app()->user->cid;

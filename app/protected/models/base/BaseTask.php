@@ -5,7 +5,6 @@
  *
  * The followings are the available columns in table 'Task':
  * @property integer $id
- * @property integer $campaignid
  * @property integer $assigneduserid
  * @property integer $assignedCompanyId
  * @property integer $siteid
@@ -15,15 +14,21 @@
  * @property string $createdDate
  * @property string $modifiedDate
  * @property integer $status
- * @property integer $pop
  * @property integer $createdBy
+ * @property string $companyRefNumber
+ * @property string $clientName
+ * @property integer $clientMobNumber
+ * @property integer $vehicleMakeId
+ * @property string $vehicleModel
+ * @property integer $typeId
+ * @property string $email
+ * @property integer $inspectionLocationId
+ * @property string $engineNumber
+ * @property string $chassisNumber
+ * @property string $odometerReading
  *
  * The followings are the available model relations:
  * @property PhotoProof[] $photoProofs
- * @property User $createdBy0
- * @property Campaign $campaign
- * @property Listing $site
- * @property User $assigneduser
  */
 class BaseTask extends CActiveRecord
 {
@@ -43,12 +48,13 @@ class BaseTask extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('pop', 'required'),
-			array('campaignid, assigneduserid, assignedCompanyId, siteid, taskDone, problem, status, pop, createdBy', 'numerical', 'integerOnly'=>true),
+			array('clientName, clientMobNumber, vehicleMakeId, vehicleModel, email, inspectionLocationId', 'required'),
+			array('assigneduserid, assignedCompanyId, siteid, taskDone, problem, status, createdBy, clientMobNumber, vehicleMakeId, typeId, inspectionLocationId', 'numerical', 'integerOnly'=>true),
+			array('companyRefNumber, clientName, vehicleModel, email, engineNumber, chassisNumber, odometerReading', 'length', 'max'=>255),
 			array('dueDate, createdDate, modifiedDate', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, campaignid, assigneduserid, assignedCompanyId, siteid, dueDate, taskDone, problem, createdDate, modifiedDate, status, pop, createdBy', 'safe', 'on'=>'search'),
+			array('id, assigneduserid, assignedCompanyId, siteid, dueDate, taskDone, problem, createdDate, modifiedDate, status, createdBy, companyRefNumber, clientName, clientMobNumber, vehicleMakeId, vehicleModel, typeId, email, inspectionLocationId, engineNumber, chassisNumber, odometerReading', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -61,10 +67,6 @@ class BaseTask extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'photoProofs' => array(self::HAS_MANY, 'PhotoProof', 'taskid'),
-			'createdBy0' => array(self::BELONGS_TO, 'User', 'createdBy'),
-			'campaign' => array(self::BELONGS_TO, 'Campaign', 'campaignid'),
-			'site' => array(self::BELONGS_TO, 'Listing', 'siteid'),
-			'assigneduser' => array(self::BELONGS_TO, 'User', 'assigneduserid'),
 		);
 	}
 
@@ -75,7 +77,6 @@ class BaseTask extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'campaignid' => 'Campaignid',
 			'assigneduserid' => 'Assigneduserid',
 			'assignedCompanyId' => 'Assigned Company',
 			'siteid' => 'Siteid',
@@ -85,8 +86,18 @@ class BaseTask extends CActiveRecord
 			'createdDate' => 'Created Date',
 			'modifiedDate' => 'Modified Date',
 			'status' => 'Status',
-			'pop' => 'Pop',
 			'createdBy' => 'Created By',
+			'companyRefNumber' => 'Company Ref Number',
+			'clientName' => 'Client Name',
+			'clientMobNumber' => 'Client Mob Number',
+			'vehicleMakeId' => 'Vehicle Make',
+			'vehicleModel' => 'Vehicle Model',
+			'typeId' => 'Type',
+			'email' => 'Email',
+			'inspectionLocationId' => 'Inspection Location',
+			'engineNumber' => 'Engine Number',
+			'chassisNumber' => 'Chassis Number',
+			'odometerReading' => 'Odometer Reading',
 		);
 	}
 
@@ -109,7 +120,6 @@ class BaseTask extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('campaignid',$this->campaignid);
 		$criteria->compare('assigneduserid',$this->assigneduserid);
 		$criteria->compare('assignedCompanyId',$this->assignedCompanyId);
 		$criteria->compare('siteid',$this->siteid);
@@ -119,8 +129,18 @@ class BaseTask extends CActiveRecord
 		$criteria->compare('createdDate',$this->createdDate,true);
 		$criteria->compare('modifiedDate',$this->modifiedDate,true);
 		$criteria->compare('status',$this->status);
-		$criteria->compare('pop',$this->pop);
 		$criteria->compare('createdBy',$this->createdBy);
+		$criteria->compare('companyRefNumber',$this->companyRefNumber,true);
+		$criteria->compare('clientName',$this->clientName,true);
+		$criteria->compare('clientMobNumber',$this->clientMobNumber);
+		$criteria->compare('vehicleMakeId',$this->vehicleMakeId);
+		$criteria->compare('vehicleModel',$this->vehicleModel,true);
+		$criteria->compare('typeId',$this->typeId);
+		$criteria->compare('email',$this->email,true);
+		$criteria->compare('inspectionLocationId',$this->inspectionLocationId);
+		$criteria->compare('engineNumber',$this->engineNumber,true);
+		$criteria->compare('chassisNumber',$this->chassisNumber,true);
+		$criteria->compare('odometerReading',$this->odometerReading,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -11,7 +11,7 @@ class AccountController extends Controller {
                 Yii::app()->user->logout();
             }
         } else {
-            $this->redirect(Yii::app()->createUrl('myCampaigns'));
+            $this->redirect(Yii::app()->createUrl('rexTask/create'));
         }
 //        Yii::app()->theme = 'static';
 //        $this->layout = "//layouts/static_page";
@@ -42,7 +42,7 @@ class AccountController extends Controller {
                     $this->redirect($returnUrlParam);
                 } else {
                     JoyUtilities::redirectUser(Yii::app()->user->id);
-                    $this->redirect(Yii::app()->getBaseUrl() . '/myCampaigns');
+                    $this->redirect(Yii::app()->getBaseUrl() . '/rexTask/create');
                 }
             } else {
                 $status = 101;

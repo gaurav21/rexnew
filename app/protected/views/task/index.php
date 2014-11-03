@@ -78,11 +78,11 @@ function scroll() {
 )); ?>   
                 <div class="form-group">
                     <div class="control">
-                        <label class="control-label">Campaigns</label>
+                        <label class="control-label">Companies</label>
                         <select class="multiselect" id="multiselect-campaigns" multiple="multiple" >
                             <?php
                                 foreach ($campaigns as $value) {
-                                    echo '<option value=' . $value['id']. '>'. $value['name'] . '(' . $value['count'] . ')</option>';
+                                    echo '<option value=' . $value['id']. '>'. $value['name'] . '</option>';
                                 }
                             ?>
                         </select>
@@ -92,7 +92,7 @@ function scroll() {
                       <select class="multiselect" id="multiselect-users" multiple="multiple" >
                         <?php
                             foreach ($users as $value) {
-                                echo '<option value=' . $value['id']. '>'. $value['name'] . '</option>';
+                                echo '<option value=' . $value['id']. '>'. $value['username'] . '</option>';
                             }
                         ?>
                         </select>
@@ -128,18 +128,18 @@ function scroll() {
 <!--        <button class="btn btn-primary pull-right table-control">Save Changes</button>-->
         <table class="table table-hover" id="tasks">
          <tr> 
-            <th>Campaign</th>
+             <th>Company Ref Number</th>
+            <th>Client Name</th>
             <th>Site</th>
-            <th>Media Type</th>
             <th>Assigned To</th>
             <th>Due Date</th>
         </tr>
             <?php
             foreach ($tasks as $value) {
-                 $row = '<tr>
-                <td>' . $value['campaignname']. '</td>
-                <td>'. $value['name']. ', '. $value['locality'].'</td>
-                <td>'.$value['mediatype'].'</td>
+                 $row = '<tr>'.
+                         '<td>' . $value['companyRefNumber']. '</td>
+                <td>' . $value['name']. '</td>'
+                . '<td>' . $value['sitename']. '</td>         
                 <td>
                     <div class="dropdown">
                       <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" id="user_assigned_'. $value['id'] .'">';
@@ -155,7 +155,7 @@ function scroll() {
                       <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">';
                  
                         foreach ($users as $user) {
-                            $row = $row . '<li role="presentation" onclick="assignTaskToUser('.$user['id'].','. $value['id'] .');"><a role="menuitem" tabindex="-1" href="#!">'. $user['name'] .'</a></li>';
+                            $row = $row . '<li role="presentation" onclick="assignTaskToUser('.$user['id'].','. $value['id'] .');"><a role="menuitem" tabindex="-1" href="#!">'. $user['username'] .'</a></li>';
                             
                         }
  

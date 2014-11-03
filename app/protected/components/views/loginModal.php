@@ -6,7 +6,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h3 class="modal-title"><img src="<?php echo $theme->getBaseUrl(); ?>/images/login.png"> &nbsp;Login to Your Monitorly Account</h3>
+                <h3 class="modal-title"><img src="<?php echo $theme->getBaseUrl(); ?>/images/login.png"> &nbsp;Login to Your Rex Account</h3>
             </div>
             <div class="modal-body">
                 <div class="form-wrap">

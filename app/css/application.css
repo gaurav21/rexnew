@@ -10832,7 +10832,7 @@ li.multiselect-item.filter .input-group input.form-control.multiselect-search {
 #logo {
 
   background-image: url(../images/logo.png);
-  width: 50px;
+  width: 100px;
   height: 50px;
   background-size: cover;
   margin-top: 2px;

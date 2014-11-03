@@ -47,8 +47,8 @@
 
 
 <ul class="nav nav-tabs" role="tablist">
-    <li class="active"><a href="#">Full Campaign</a></li>
-    <li><a href="<?php echo Yii::app()->urlManager->createUrl('reports'); ?>">Proof of Posting</a></li>
+    <li class="active"><a href="#">All Tasks</a></li>
+<!--    <li><a href="<?php echo Yii::app()->urlManager->createUrl('reports'); ?>">Proof of Posting</a></li>-->
 </ul>
 
 <!-- tasks list --> 
@@ -56,16 +56,14 @@
     <div class="row">
         <div class="col-md-12">
             <h1 class="list-heading pull-left">Report</h1>
-            <button class="btn btn-secondary table-control pull-right"><span class="glyphicon glyphicon-download"></span> Download Report</button>
+<!--            <button class="btn btn-secondary table-control pull-right"><span class="glyphicon glyphicon-download"></span> Download Report</button>-->
             <table class="table table-hover">
                 <tr>
-                    <th>Campaign</th>
-                    <th>Site</th>
-                    <th>Location</th>
-                    <th>Media Type</th>
-                    <th>Assigned To</th>
-                    <th>Due Date</th>
-                    <th>Status</th>
+                    <th>Company Ref Number</th>
+            <th>Client Name</th>
+            <th>Site</th>
+            <th>Assigned To</th>
+            <th>Due Date</th>
                     <th>Photo</th>
                 </tr>
 
@@ -77,29 +75,28 @@
                     }
                     ?>
                     <tr class='<?php echo $trClass; ?>' id="<?php echo $t['id']; ?>">
-                        <td><?php echo $t['campaign']; ?></td>
-                        <td><?php echo $t['site']; ?></td>
-                        <td><?php echo $t['location']; ?></td>
-                        <td><?php echo $t['mediatype']; ?></td>
-                        <td><?php echo strlen($t['assignedto']) ? $t['assignedto'] : 'Unassigned'; ?></td>
-                        <td><?php echo date('d/m/Y', strtotime($t['duedate'])); ?>
-                            <input type="hidden" class="duedate" value="<?php echo date('Y-m-d', strtotime($t['duedate'])); ?>" />
-                            <input type="hidden" class="pop" value="<?php echo $t['pop']; ?>" />
+                        <td><?php echo $t['companyRefNumber']; ?></td>
+                        <td><?php echo $t['name']; ?></td>
+                        <td><?php echo $t['sitename']; ?></td>
+                        <td><?php echo strlen($t['assignedusername']) ? $t['assignedusername'] : 'Unassigned'; ?></td>
+                        <td><?php echo date('d/m/Y', strtotime($t['dueDate'])); ?>
+                            <input type="hidden" class="duedate" value="<?php echo date('Y-m-d', strtotime($t['dueDate'])); ?>" />
+                            
                         </td>
                         <td>
                             <?php
                             $status = '';
                             if ($t['status'] == 0) {
-                                if($t['duedate'] < date('Y-m-d'))
+                                if($t['dueDate'] < date('Y-m-d'))
                                     $status = 'Missed';
                                 else 
                                     $status = 'Pending';
                             } else {
-                                if ($t['problem']) {
-                                    $status = '<span class="glyphicon glyphicon-warning-sign"></span>';
-                                } else {
-                                    $status = '<span class="glyphicon glyphicon-ok"></span>';
-                                }
+//                                if ($t['problem']) {
+//                                    $status = '<span class="glyphicon glyphicon-warning-sign"></span>';
+//                                } else {
+//                                    $status = '<span class="glyphicon glyphicon-ok"></span>';
+//                                }
                             }
                             echo $status;
                             ?>

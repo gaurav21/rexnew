@@ -12,8 +12,8 @@
         $theme = Yii::app()->theme;
         $cs = Yii::app()->clientScript;
         $cs->registerCssFile($theme->getBaseUrl() . '/css/application.css');
-        $cs->registerCssFile($theme->getBaseUrl() . '/css/intlTelInput.css');
-        $cs->registerCssFile($theme->getBaseUrl() . '/css/phonenumber.css');
+//        $cs->registerCssFile($theme->getBaseUrl() . '/css/intlTelInput.css');
+//        $cs->registerCssFile($theme->getBaseUrl() . '/css/phonenumber.css');
         
         ?>
         <!--
@@ -29,7 +29,7 @@
         $cs->registerScriptFile($theme->getBaseUrl() . '/js/jquery-ui.min.js');//, CClientScript::POS_BEGIN);
         $cs->registerScriptFile($theme->getBaseUrl() . '/js/bootstrap.js');//, CClientScript::POS_END);
         $cs->registerScriptFile($theme->getBaseUrl() . '/js/application.js');//, CClientScript::POS_BEGIN);
-        $cs->registerScriptFile($theme->getBaseUrl() . '/js/intlTelInput.js');//, CClientScript::POS_BEGIN);
+       //    $cs->registerScriptFile($theme->getBaseUrl() . '/js/intlTelInput.js');//, CClientScript::POS_BEGIN);
         ?>
         <style>
             .flag{
@@ -67,12 +67,12 @@
 		                            <li><a href="<?php echo Yii::app()->urlManager->createUrl('account/logout'); ?>">Logout</a></li>
 		                        <?php }
 						} else { ?>
-	                        <li class="phone1"><span class="glyphicon glyphicon-phone-alt">&nbsp;</span>+91 11 4132 0334</li>
-							<li><a href="https://play.google.com/store/apps/details?id=com.eatads.monitorly" target="_blank" class="download-app-link">Download App</a></li>
-	                        <li><a href="mailto:sales@eatds.com">Support</a></li>
+	                        <li class="phone1"><span class="glyphicon glyphicon-phone-alt">&nbsp;</span>+91-22-2541 3500</li>
+							<li><a href="#" target="_blank" class="download-app-link">Download App</a></li>
+	                        <li><a href="mailto:hetal.shah@rexsolution.in">Support</a></li>
 	                        <?php if(Yii::app()->user->isGuest) { ?>
 	                            <li><a href="#" data-toggle="modal" data-target="#modal-login">Login</a></li>
-	                            <li><a href="<?php echo Yii::app()->urlManager->createUrl('account/signup'); ?>">Sign Up</a></li>
+<!--	                            <li><a href="<?php //echo Yii::app()->urlManager->createUrl('account/signup'); ?>">Sign Up</a></li>-->
 	                        <?php } else { ?>
 	                            <li><a href="<?php echo Yii::app()->urlManager->createUrl('account/logout'); ?>">Logout</a></li>
 	                        <?php }

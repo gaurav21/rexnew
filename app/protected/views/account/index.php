@@ -2,7 +2,7 @@
 
 <?php $this->widget('LoginModal'); ?>
 <!-- reset password modal -->
-<div class="modal fade modal-app" id="modal-resetpassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div  class="modal fade modal-app" id="modal-resetpassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -72,68 +72,16 @@
 <!-- hero section -->
 <div class="row hero-section">
     <div class="col-md-12">
-        <h1 class="hero-section-main-message">Capture campaign images. Report instantly.</h1>
-		<h1 class="hero-section-main-message">Save time, Get paid.</h1>
+        <h1 class="hero-section-main-message">Rex Marketing Content</h1>
+		<h1 class="hero-section-main-message">Rex Marketing Content</h1>
        
-        <?php if (Yii::app()->user->hasFlash('success')) { ?>
-            <div id="flash-messages" class="alert alert-success alert-dismissible">
-                <?php echo Yii::app()->user->getFlash('success'); ?>
 
-            </div>
-        <?php } ?>
-        <?php
-        $form = $this->beginWidget('CActiveForm', array(
-            'id' => 'vendor_subscription',
-            'action' => 'account/createvendor',
-            //'enableClientValidation' => true,
-            //    'clientOptions' => array(
-            //        'validateOnSubmit' => true,
-            //    ),
-            'htmlOptions' => array(
-                'class' => 'form-inline',
-            ),
-        ));
-        ?>
-		<div class="signup-form-wrap-homepage">
-<!--                        <input type="email" class="form-control" placeholder="Email">-->
-
-        <?php echo $form->emailField($modelSub, 'email', array('id' => 'emailid', 'class' => 'form-control form-control-hero-section', 'placeholder' => 'Email', 'type' => 'email', 'autocomplete' => 'off')); ?>                            
-        <?php echo $form->error($modelSub, 'email'); ?>
-<!--                        <input type="text" class="form-control" placeholder="Company Name">-->
-        <?php echo $form->textField($modelSub, 'companyname', array('id' => 'companynameid', 'class' => 'form-control companyname form-control-hero-section', 'placeholder' => 'Company Name', 'autocomplete' => 'off')); ?> 
-
-        <input type="hidden" value="" id="vendor-ac-id">
-        <?php echo $form->error($modelSub, 'companyname'); ?>
-<!--                        <input type="text" class="form-control" placeholder="+91">-->
-<!--                        <input  class="form-control intl-tel-input" placeholder="Mobile" id="mobile-number" type="tel">-->
-        <?php echo $form->textField($modelSub, 'phonenumber', array('max-length' => '10', 'class' => 'form-control intl-tel-input form-control-hero-section intl-tel-input', 'placeholder' => 'Mobile', 'type' => 'tel', 'id' => 'mobile-number', 'autocomplete' => 'off')); ?>                            
-        <?php echo $form->error($modelSub, 'phonenumber'); ?>
-        <br>
-        <br>
-        <?php //echo CHtml::submitButton('Sign Up for Free', array('class' => 'btn btn-primary btn-primary-lg', 'id' => '_submit')); ?>
-        <button class="btn btn-primary btn-primary-lg" id="signup">Create Free Account</button>
-        <!--                        <button class="btn btn-primary btn-primary-lg">Sign Up for Free</button>-->
-        <br>
-
-        <h5 class="hero-section-termscopy">By signing-up you agree to <a href="<?php echo Yii::app()->urlManager->createUrl('account/terms'); ?>" target="_blank">Terms &amp; Conditions</a></h5>
-        <?php $this->endWidget(); ?>
-
-        <!--<div><a class="pricing-link" href="pricing.html">Know More About Pricing &amp; Plan</a></div>-->
-		</div>
-		<nav class="navbar navbar-default subnav" id="selling-points-subnav" role="navigation">
-			
-				<a href="#" id="selling-point-phone-anchor">Mobile App</a>
-				<a href="#" id="selling-point-sync-anchor">Works Anywhere</a>
-				<a href="#" id="selling-point-certification-anchor">Certified Images</a>
-				<a href="#" id="selling-point-report-anchor">Instant Reports</a>
-
-		</nav>
     </div>
 </div>
 <!-- end of hero section --> 
 
 <!-- benefits -->
-<div class="row selling-points">
+<!--<div class="row selling-points">
     <div class="col-md-12">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
@@ -170,7 +118,7 @@
                     </li>
                 </ul>
             </div>
-            <!--
+            
 <div class="row pricing-preview">
     <div class="col-md-12">
         <h2>No Nonsense Pay-As-You-Go Pricing</h2>
@@ -182,23 +130,23 @@
         <button class="btn btn-primary btn-primary-lg js-signup-btn-scrolltop">Sign Up for Free</button>
         <h5>No Credit Card required</h5>
     </div>
-</div>-->
+</div>
         </div>
     </div>
-</div>
+</div>-->
 <!-- end of benefits  -->
 
 <!-- process steps in monitorly -->
-<div class="row process-steps">
+<!--<div class="row process-steps">
     <div class="col-md-12">
         <h2>5 Steps to Take All Your Monitoring Pain Away</h2>
         <img class="img-responsive" src="<?php echo $theme->getBaseUrl(); ?>/images/process-steps.png">
     </div>
-</div>
+</div>-->
 <!-- end of process steps in monitorly  -->
 
 <!-- testimonials -->
-<div class="row testimonial">
+<!--<div class="row testimonial">
     <div class="col-md-2">
         <img src="<?php echo $theme->getBaseUrl(); ?>/images/rongraham.png" class="testimonial-author-image">
     </div>
@@ -208,7 +156,7 @@
 	        <p class="testimonial-author">Ron Graham, Media On The Go</p>
 		</div>
     </div>
-</div>
+</div>-->
 <!-- end of testimonials -->
 
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

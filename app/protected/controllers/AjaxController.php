@@ -637,9 +637,9 @@ class AjaxController extends Controller {
     public function actionassignTaskToUser() {
         if ($_POST['uid'] && $_POST['tid']) {
             $flag = Task::model()->updateByPk($_POST['tid'], array("assigneduserid" => $_POST['uid']));
-            if ($flag == 1) {
-                echo json_encode(Task::fetchTaskDetails($_POST['tid']));
-            }
+//            if ($flag == 1) {
+//                echo json_encode(Task::fetchTaskDetails($_POST['tid']));
+//            }
         }
     }
 

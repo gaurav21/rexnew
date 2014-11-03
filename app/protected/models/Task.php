@@ -13,15 +13,17 @@ class Task extends BaseTask {
     }
     
     public static function fetchTaskList($companyid, $campaignId = null, $assignedUserId = null, $startDate = null, $endDate = null, $start = null, $limit = null ) {
-        $sql = 'select l.name, length, width,mt.name as mediatype, locality, t.id, DATE_FORMAT(t.dueDate,\'%d %M %Y\') as dueDate, c.name as campaignname, 
+        $sql = 'select t.clientName as name,t.clientMobNumber, t.id,
+            c.name as sitename,vv.name as vehiclemake,
+            t.companyRefNumber,
+        DATE_FORMAT(t.dueDate,\'%d %M %Y\') as dueDate,  
         u.id as assigneduserid, u.username as assignedusername from Task t 
-        inner join Campaign c on c.id = t.campaignid
-        inner join Listing l on l.id = t.siteid 
-        inner join MediaType mt on mt.id = l.mediatypeid
+        inner join city c on c.id = t.inspectionLocationId
+        left outer join  VehicleMakeMaster vv on vv.id =  t.vehicleMakeId
         left outer join User u on u.id = t.assigneduserid
-        where t.status =1 and DATE_FORMAT(dueDate, \'%Y-%m-%d\') >= CURRENT_DATE and assignedCompanyId = ' . $companyid .' AND l.status=1 ';
+        where DATE_FORMAT(dueDate, \'%Y-%m-%d\') >= CURRENT_DATE and assignedCompanyId = ' . $companyid ;
         if ($campaignId) {
-            $sql = $sql . ' and  campaignid in (' . $campaignId . ')';
+            $sql = $sql . ' and  assignedCompanyId in (' . $campaignId . ')';
         }
         if ($assignedUserId) {
             $sql = $sql . ' and  assigneduserid in (' . $assignedUserId . ')';
