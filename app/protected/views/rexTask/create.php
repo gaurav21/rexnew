@@ -1,3 +1,14 @@
+<script type="text/javascript">
+    $(function () {
+        $('.mon_menu').each(function () {
+            $(this).removeClass('active');
+        });
+        $('.menu_newtask').addClass('active');
+    });
+    //save user password
+
+
+</script>
 <div class="row signup-content">
     <div class="col-md-12">
         <div class="signup-content-headings">

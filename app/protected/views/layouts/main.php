@@ -58,7 +58,7 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav tabs">
-                        <li class="mon_menu menu_task"><a href="<?php echo Yii::app()->urlManager->createUrl('rexTask'); ?>">Create Task</a></li>
+                        <li class="mon_menu menu_newtask"><a href="<?php echo Yii::app()->urlManager->createUrl('rexTask/create'); ?>">Create Task</a></li>
                         <li class="mon_menu menu_user"><a href="<?php echo Yii::app()->urlManager->createUrl('user'); ?>">Users</a></li>
                         <li class="mon_menu menu_task"><a href="<?php echo Yii::app()->urlManager->createUrl('task'); ?>">All Tasks</a></li>
                         <li class="mon_menu menu_report"><a href="<?php echo Yii::app()->urlManager->createUrl('reports/all'); ?>">Reports</a></li>
