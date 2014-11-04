@@ -289,8 +289,8 @@ class ApiController extends Controller {
                 @unlink($originalFileWithPath);
 
                 $installationProblem = ($put_vars['problems']['installation'] == '') ? NULL : trim($put_vars['problems']['installation']);
-                $lightingProblem = ($put_vars['problems']['lighting'] == '') ? NULL : trim($put_vars['problems']['lighting']);
-                $obstructionProblem = ($put_vars['problems']['obstruction'] == '') ? NULL : trim($put_vars['problems']['obstruction']);
+//                $lightingProblem = ($put_vars['problems']['lighting'] == '') ? NULL : trim($put_vars['problems']['lighting']);
+//                $obstructionProblem = ($put_vars['problems']['obstruction'] == '') ? NULL : trim($put_vars['problems']['obstruction']);
                 $commentProblem = ($put_vars['problems']['comments'] == '') ? NULL : trim($put_vars['problems']['comments']);
 
                 // PHOTOPROOF
@@ -304,8 +304,8 @@ class ApiController extends Controller {
                 $ppModel->type = $type;
                 //$ppModel->direction = $put_vars['direction'];
                 $ppModel->installation = $installationProblem;
-                $ppModel->lighting = $lightingProblem;
-                $ppModel->obstruction = $obstructionProblem;
+//                $ppModel->lighting = $lightingProblem;
+//                $ppModel->obstruction = $obstructionProblem;
                 $ppModel->comments = $commentProblem;
                 $ppModel->createdDate = $currDateTime;
                 $ppModel->modifiedDate = $currDateTime;
