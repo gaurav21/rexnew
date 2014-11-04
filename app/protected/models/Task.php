@@ -21,7 +21,7 @@ class Task extends BaseTask {
         inner join city c on c.id = t.inspectionLocationId
         left outer join  VehicleMakeMaster vv on vv.id =  t.vehicleMakeId
         left outer join User u on u.id = t.assigneduserid
-        where DATE_FORMAT(dueDate, \'%Y-%m-%d\') >= CURRENT_DATE and assignedCompanyId = ' . $companyid ;
+        where DATE_FORMAT(dueDate, \'%Y-%m-%d\') >= CURRENT_DATE ';
         if ($campaignId) {
             $sql = $sql . ' and  assignedCompanyId in (' . $campaignId . ')';
         }

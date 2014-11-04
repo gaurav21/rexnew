@@ -13,7 +13,7 @@ class ReportsController extends Controller
         }
         public function actionAll()
 	{
-            $cId = Yii::app()->user->cid;
+            //$cId = Yii::app()->user->cid;
             $sdate = null; 
             $edate = null;
             $campaignIds = null;
@@ -37,11 +37,10 @@ class ReportsController extends Controller
             }
             $sql = 'select t.clientName as name,t.clientMobNumber, t.id,t.status,
             c.name as sitename,vv.name as vehiclemake,
-            t.companyRefNumber,IFNULL(COUNT(pp.id),0) as photocount,
+            t.companyRefNumber,IFNULL((select count(id) from PhotoProof where taskid = t.id),0) as photocount,
         DATE_FORMAT(t.dueDate,\'%d %M %Y\') as dueDate,  
         u.id as assigneduserid, u.username as assignedusername from Task t 
-        inner join city c on c.id = t.inspectionLocationId
-        LEFT JOIN PhotoProof pp ON pp.taskid=t.id 
+        inner join city c on c.id = t.inspectionLocationId        
         left outer join  VehicleMakeMaster vv on vv.id =  t.vehicleMakeId
         left outer join User u on u.id = t.assigneduserid
                              where DATE_FORMAT(dueDate, \'%Y-%m-%d\') >= CURRENT_DATE ' ;
@@ -59,7 +58,6 @@ class ReportsController extends Controller
         }
         
         $sql = $sql . ' order by t.dueDate ASC';
-            
             $tasks = Yii::app()->db->createCommand($sql)->queryAll();
             $campaignIdList = array();
             $assignedToList = array();

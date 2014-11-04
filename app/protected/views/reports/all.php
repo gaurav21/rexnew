@@ -83,10 +83,10 @@
                             <input type="hidden" class="duedate" value="<?php echo date('Y-m-d', strtotime($t['dueDate'])); ?>" />
                             
                         </td>
-                        <td>
+<!--                        <td>
                             <?php
                             $status = '';
-                            if ($t['status'] == 0) {
+                            if (empty($t['status']) && $t['status'] == 0) {
                                 if($t['dueDate'] < date('Y-m-d'))
                                     $status = 'Missed';
                                 else 
@@ -100,7 +100,7 @@
                             }
                             echo $status;
                             ?>
-                        </td>
+                        </td>-->
                         <td>
                             <?php
                             if ($t['status'] == 0) {
