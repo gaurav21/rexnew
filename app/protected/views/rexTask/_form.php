@@ -21,89 +21,89 @@
 	<?php echo $form->errorSummary($model); ?>
         
         
-        	<div class="row">
+<!--        	<div class="row">-->
 		<?php echo $form->labelEx($model,'companyRefNumber'); ?>
-		<?php echo $form->textField($model,'companyRefNumber',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textField($model,'companyRefNumber',array('size'=>60,'maxlength'=>255, 'class' => 'form-control')); ?>
 		<?php echo $form->error($model,'companyRefNumber'); ?>
-	</div>
+<!--	</div>
 
-	<div class="row">
+	<div class="row">-->
 		<?php echo $form->labelEx($model,'clientName'); ?>
-		<?php echo $form->textField($model,'clientName',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textField($model,'clientName',array('size'=>60,'maxlength'=>255, 'class' => 'form-control')); ?>
 		<?php echo $form->error($model,'clientName'); ?>
-	</div>
+<!--	</div>
 
-	<div class="row">
+	<div class="row">-->
 		<?php echo $form->labelEx($model,'clientMobNumber'); ?>
-		<?php echo $form->textField($model,'clientMobNumber'); ?>
+		<?php echo $form->textField($model,'clientMobNumber',array('class' => 'form-control')); ?>
 		<?php echo $form->error($model,'clientMobNumber'); ?>
-	</div>
+<!--	</div>
 
-	<div class="row">
+	<div class="row">-->
 		<?php echo $form->labelEx($model,'vehicleMakeId'); ?>
-               <?php echo $form->dropDownList($model,'vehicleMakeId',  $make); ?>
+               <?php echo $form->dropDownList($model,'vehicleMakeId',  $make, array('class' => 'form-control')); ?>
 		<?php echo $form->error($model,'vehicleMakeId'); ?>
-	</div>
+<!--	</div>
 
-	<div class="row">
+	<div class="row">-->
 		<?php echo $form->labelEx($model,'vehicleModel'); ?>
-		<?php echo $form->textField($model,'vehicleModel',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textField($model,'vehicleModel',array('size'=>60,'maxlength'=>255,'class' => 'form-control')); ?>
 		<?php echo $form->error($model,'vehicleModel'); ?>
-	</div>
+<!--	</div>
 
 
 
-	<div class="row">
+	<div class="row">-->
 		<?php echo $form->labelEx($model,'email'); ?>
-		<?php echo $form->textField($model,'email',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textField($model,'email',array('size'=>60,'maxlength'=>255,'class' => 'form-control')); ?>
 		<?php echo $form->error($model,'email'); ?>
-	</div>
+<!--	</div>
 
-	<div class="row">
+	<div class="row">-->
 		<?php echo $form->labelEx($model,'inspectionLocationId'); ?>
-		<?php echo $form->dropDownList($model, 'inspectionLocationId', $city); ?>
+		<?php echo $form->dropDownList($model, 'inspectionLocationId', $city,array('class' => 'form-control')); ?>
 		<?php echo $form->error($model,'inspectionLocationId'); ?>
-	</div>
-<!--        company name-->
-	<div class="row">
+<!--	</div>
+        company name
+	<div class="row">-->
 		<?php echo $form->labelEx($model,'assignedCompanyId'); ?>
-		<?php echo $form->dropDownList($model, 'assignedCompanyId', $company); ?>
+		<?php echo $form->dropDownList($model, 'assignedCompanyId', $company,array('class' => 'form-control')); ?>
 		<?php echo $form->error($model,'assignedCompanyId'); ?>
-	</div>
+<!--	</div>
 
 
-	<div class="row">
+	<div class="row">-->
 		<?php echo $form->labelEx($model,'dueDate'); ?>
-		<?php echo $form->textField($model,'dueDate',array('id' => 'sdate')); ?>
+		<?php echo $form->textField($model,'dueDate',array('id' => 'sdate','class' => 'form-control')); ?>
 		<?php echo $form->error($model,'dueDate'); ?>
-	</div>
+<!--	</div>
 
-        <div class="row">
+        <div class="row">-->
 		<?php echo $form->labelEx($model,'assignedUserId'); ?>
-		<?php echo $form->dropDownList($model, 'assigneduserid', $company); ?>
+		<?php echo $form->dropDownList($model, 'assigneduserid', $company,array('class' => 'form-control')); ?>
 		<?php echo $form->error($model,'assignedCompanyId'); ?>
-	</div>
-	<div class="row">
+<!--	</div>
+	<div class="row">-->
 		<?php echo $form->labelEx($model,'engineNumber'); ?>
-		<?php echo $form->textField($model,'engineNumber',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textField($model,'engineNumber',array('size'=>60,'maxlength'=>255,'class' => 'form-control')); ?>
 		<?php echo $form->error($model,'engineNumber'); ?>
-	</div>
+<!--	</div>-->
 
-	<div class="row">
+<!--	<div class="row">-->
 		<?php echo $form->labelEx($model,'chassisNumber'); ?>
-		<?php echo $form->textField($model,'chassisNumber',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textField($model,'chassisNumber',array('size'=>60,'maxlength'=>255,'class' => 'form-control')); ?>
 		<?php echo $form->error($model,'chassisNumber'); ?>
-	</div>
+<!--	</div>-->
 
-	<div class="row">
+<!--	<div class="row">-->
 		<?php echo $form->labelEx($model,'odometerReading'); ?>
-		<?php echo $form->textField($model,'odometerReading',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textField($model,'odometerReading',array('size'=>60,'maxlength'=>255,'class' => 'form-control')); ?>
 		<?php echo $form->error($model,'odometerReading'); ?>
-	</div>
+<!--	</div>-->
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
-	</div>
+<!--	<div class="row buttons">-->
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save',array('class' => 'btn btn-primary btn-primary-lg')); ?>
+<!--	</div>-->
 
 <?php $this->endWidget(); ?>
     </div>
