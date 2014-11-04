@@ -120,7 +120,7 @@ class ApiController extends Controller {
                                 . "inner join city c on c.id = t.inspectionLocationId "
                                 . "LEFT JOIN PhotoProof pp ON pp.taskid = t.id "
                                 . "AND pp.clickedDateTime BETWEEN '$sDate' AND '$eDate' "
-                                . "WHERE t.taskDone=1 AND t.status=1 AND t.assigneduserid='$uId' AND t.dueDate BETWEEN '$sDate' AND '$eDate' "
+                                . "WHERE t.taskDone=1 AND t.status=1 AND t.assigneduserid='$uId' "
                                 . "GROUP BY t.id "
                                 . "LIMIT {$start}, {$limit}";
                     } else if($tDone == 0) {
@@ -141,7 +141,7 @@ class ApiController extends Controller {
                                 . "inner join city c on c.id = t.inspectionLocationId "
                                 . "LEFT JOIN PhotoProof pp ON pp.taskid = t.id "
                             . "AND pp.clickedDateTime BETWEEN ' $sDate' AND '$eDate' "
-                            . "WHERE t.status=1 AND t.assigneduserid='$uId' AND t.dueDate BETWEEN '$sDate' AND '$eDate' "
+                            . "WHERE t.status=1 AND t.assigneduserid='$uId'  "
                             . "GROUP BY t.id "
                             . "LIMIT {$start}, {$limit} ";
                     }
