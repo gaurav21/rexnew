@@ -165,12 +165,11 @@ class AjaxController extends Controller {
         $dueDate = Yii::app()->request->getParam('duedate');
         $pop = Yii::app()->request->getParam('pop');
         $sql = "SELECT pp.id, pp.imageName, pp.clickedDateTime, pp.clickedLat, pp.clickedLng, CONCAT(u.fname, u.lname) as clickedBy, "
-                . "pp.installation, pp.lighting, pp.obstruction, pp.comments, l.name as siteName, c.name as campaignName "
+                . "pp.installation, pp.lighting, pp.obstruction, pp.comments, c.name as siteName, t.clientName as campaignName "
                 . "FROM PhotoProof pp "
                 . "LEFT JOIN User u ON u.id=pp.clickedBy "
                 . "LEFT JOIN Task t ON t.id=pp.taskid "
-                . "LEFT JOIN Campaign c ON c.id=t.campaignid "
-                . "LEFT JOIN Listing l ON l.id=t.siteid "
+                ."inner join city c on c.id = t.inspectionLocationId "
                 . "WHERE pp.taskid = '$taskId' "
                 . "ORDER BY pp.clickedDateTime DESC ";
         //if (!$pop)

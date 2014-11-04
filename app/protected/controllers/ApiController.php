@@ -246,11 +246,11 @@ class ApiController extends Controller {
                
 
                 $imageData = base64_decode($put_vars['photo']);
-                $imageName = trim($put_vars['photoname']);                
+                $imageName = trim($put_vars['photoname']);     
+                $type = trim($put_vars['type']);
                 $source = imagecreatefromstring($imageData);
-                
 
-                $uploadedFile = imagejpeg($source, "uploads/listing/".$imageName, 100);
+            $uploadedFile = imagejpeg($source, "uploads/listing/".$imageName, 100);
 
                 // send them to aws s3
                 $s3Obj = new EatadsS3();
@@ -281,11 +281,11 @@ class ApiController extends Controller {
                 $s3Obj->uploadFile($newFileThumbName, 'listing/small_' . $newFileName);
                 @unlink($newFileThumbName);
 
-                $imageThumb->resize(102, 74);
-                $newFileThumbName = $uploadFilePath . 'tiny_' . $newFileName;
-                $imageThumb->save($newFileThumbName);
-                $s3Obj->uploadFile($newFileThumbName, 'listing/tiny_' . $newFileName);
-                @unlink($newFileThumbName);
+//                $imageThumb->resize(102, 74);
+//                $newFileThumbName = $uploadFilePath . 'tiny_' . $newFileName;
+//                $imageThumb->save($newFileThumbName);
+//                $s3Obj->uploadFile($newFileThumbName, 'listing/tiny_' . $newFileName);
+//                @unlink($newFileThumbName);
                 @unlink($originalFileWithPath);
 
                 $installationProblem = ($put_vars['problems']['installation'] == '') ? NULL : trim($put_vars['problems']['installation']);
@@ -301,15 +301,15 @@ class ApiController extends Controller {
                 $ppModel->clickedBy = $put_vars['clickedby'];
                 $ppModel->clickedLat = $put_vars['lat'];
                 $ppModel->clickedLng = $put_vars['lng'];
-                $ppModel->direction = $put_vars['direction'];
+                $ppModel->type = $type;
+                //$ppModel->direction = $put_vars['direction'];
                 $ppModel->installation = $installationProblem;
                 $ppModel->lighting = $lightingProblem;
                 $ppModel->obstruction = $obstructionProblem;
                 $ppModel->comments = $commentProblem;
                 $ppModel->createdDate = $currDateTime;
                 $ppModel->modifiedDate = $currDateTime;
-                $ppModel->save();
-                
+             $ppModel->save();
                 // TASK
                 // if any problem then problemFlag will be true
                 // if photoclicked then taskDone will be true

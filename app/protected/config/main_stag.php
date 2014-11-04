@@ -27,7 +27,7 @@ return array(
         // uncomment the following to enable the Gii tool        
         'gii' => array(
             'class' => 'system.gii.GiiModule',
-            'password' => 'monitorly',
+            'password' => 'rex',
             // If removed, Gii defaults to localhost only. Edit carefully to taste.
             'ipFilters' => false,//array($_SERVER['REMOTE_ADDR']),
         ),

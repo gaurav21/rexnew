@@ -20,13 +20,13 @@ class SiteController extends Controller {
         );
     }
 
-    public function init() {        
-        if (Yii::app()->user->isGuest) {
-            if(Yii::app()->controller->id != 'account') {
-                $this->redirect(Yii::app()->createUrl('account'));
-            }            
-        }        
-    }
+//    public function init() {        
+//        if (Yii::app()->user->isGuest) {
+////            if(Yii::app()->controller->id != 'account') {
+////                $this->redirect(Yii::app()->createUrl('account'));
+////            }            
+//        }        
+//    }
 
     /**
      * This is the default 'index' action that is invoked
