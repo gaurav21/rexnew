@@ -66,7 +66,7 @@ return array(
          */
         // uncomment the following to use a MySQL database
         'db' => array(
-            'connectionString' => 'mysql:host=localhost;dbname=eatadskell',
+            'connectionString' => 'mysql:host=localhost;dbname=rex1',
             'emulatePrepare' => true,
             'username' => 'eatadskell',
             'password' => 'ssf989tga',
@@ -125,7 +125,7 @@ return array(
         'load_markers' => 3000,
         'solrCurl' => 'http://eataddsolr.eatads.com:8080/solr/listing/select?',
         'awss3' => array(           // amazon s3 details
-            's3Bucket'=>'monitorly-localhost-media',
+            's3Bucket'=>'rex-ea',
             'accessKey'=>'AKIAIW62GKSH4I5LIEXQ',
             'secretKey'=>'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'
         ),
