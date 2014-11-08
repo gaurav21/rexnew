@@ -329,8 +329,11 @@ class ApiController extends Controller {
                 if (!is_null($ppProblem['installation']) || !is_null($ppProblem['lighting']) || !is_null($ppProblem['obstruction']) || !is_null($ppProblem['comments'])) {
                     $problemFlag = 1;
                 }
+                
                 $taskModel = Task::model()->findByPk($taskId);
-                $taskModel->taskDone = $taskDoneFlag;
+                if ($type == 19) {
+                    $taskModel->taskDone = $taskDoneFlag;
+                }
                 $taskModel->problem = $problemFlag;
                 $taskModel->modifiedDate = $currDateTime;
                 
